@@ -46,6 +46,6 @@ Here's a table of every config variable:
 4. Make sure your account game details are set to public (you can set it back to private when you're done). If you're having trouble, see this [image](/images/game_details.png) for what settings need to be public.
 5. Run `node import-steam.js` in your command line. This will create an `achievements.json` file (or modify it if it already exists) at the location specified in `config.js`.
 
-If you turned `USE_DIRECT_LINKS` in the config to false, it will also download the relevant achievement icons to the specified icons folder.
+If you turned `DOWNLOAD_ICONS` in the config to true, it will also download the relevant achievement icons to the specified icons folder.
 
 6. And you're done! You can run the script again at any time to update it with your most recent Steam achievements.
