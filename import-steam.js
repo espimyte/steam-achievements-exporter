@@ -78,8 +78,8 @@ async function getUserData(userId) {
  * @param icon icon id of achievement (from schema)
  * @returns icon URL
  */
-function getIconURL(appId, icon) {
-    return `https://shared.fastly.steamstatic.com/community_assets/images/apps/${appId}/${icon}`;
+function getIconURL(appId, icon, https = false) {
+    return `${https ? "https" : "http"}://shared.fastly.steamstatic.com/community_assets/images/apps/${appId}/${icon}`;
 }
 
 async function main() {
@@ -166,7 +166,7 @@ async function main() {
             const gameKey = gameDict[data.appid]?.key;
             if (!gameKey) return;
             
-            const iconUrl = getIconURL(data.appid, ach.icon);
+            const iconUrl = getIconURL(data.appid, ach.icon, true);
 
             const achEntry = {};
             achEntry.game = gameKey;
