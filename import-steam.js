@@ -9,7 +9,7 @@ import stream from 'node:stream';
 import path from 'path'
 import { fileURLToPath } from 'url';
 import { fetchJSON, writeJSON, saveImageFromURL, fetchJSONfromURL } from './utils.js'
-import { RELATIVE_IMAGE_PATH, FETCH_MODE, INCLUDE_IDS, EXCLUDE_IDS, ICONS_OUTPUT_FOLDER, JSON_OUTPUT_PATH, USE_DIRECT_LINKS } from './config.js'
+import { RELATIVE_IMAGE_PATH, FETCH_MODE, INCLUDE_IDS, EXCLUDE_IDS, ICONS_OUTPUT_FOLDER, JSON_OUTPUT_PATH, DOWNLOAD_ICONS } from './config.js'
 
 /** 
  * Returns whether or not the Steam profile is public
@@ -173,7 +173,7 @@ async function main() {
             achEntry.timestamp = ach.unlockTime;
             achEntry.title = ach.name;
             achEntry.desc = ach.desc;
-            achEntry.img = USE_DIRECT_LINKS ? iconUrl : path.relative(RELATIVE_IMAGE_PATH, `${ICONS_OUTPUT_FOLDER}/${gameKey}/${ach.icon}`);
+            achEntry.img = !DOWNLOAD_ICONS ? iconUrl : path.relative(RELATIVE_IMAGE_PATH, `${ICONS_OUTPUT_FOLDER}/${gameKey}/${ach.icon}`);
             achEntry.src = 'steam';
             json.achievements.push(achEntry);
         })
@@ -185,7 +185,7 @@ async function main() {
     // Write to JSON file
     writeJSON(`${JSON_OUTPUT_PATH}`, json, true);
 
-    if (USE_DIRECT_LINKS) return;
+    if (!DOWNLOAD_ICONS) return;
 
     // Save achievement icons of achieved achievements from schemas
     let saveIconStartTime = new Date();
