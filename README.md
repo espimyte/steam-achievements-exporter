@@ -3,7 +3,7 @@
 A script that exports your Steam achievement data, from achievement titles, descriptions, completion time, and icons.
 Data is exported into a JSON file, and icons are downloaded into a folder.
 
-# Prerequisites
+## Prerequisites
 
 **Node.js**
 
@@ -22,7 +22,7 @@ Data is exported into a JSON file, and icons are downloaded into a folder.
 - You can get one here: https://steamcommunity.com/dev/apikey
 - You can write anything you want under "Domain Name"
 
-### Steps
+## How to Use
 
 1. Before you begin, you should take a look at the `config.js` file. Make sure that the `JSON_OUTPUT_PATH` variable points to your `achievements.json` file (or where you intend it to be).
 
